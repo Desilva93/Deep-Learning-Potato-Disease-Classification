@@ -1,214 +1,127 @@
- # 🥔 Potato Disease Classification Using Deep Learning
+# 🥔 Deep Learning Potato Disease Classification
 
-## Overview
+A Deep Learning based Potato Disease Classification system that identifies potato leaf diseases from images.
 
-Potato diseases can significantly reduce crop yield and quality if not detected early. This project presents an end-to-end Deep Learning solution for automatic potato leaf disease detection using Convolutional Neural Networks (CNNs).
+The model classifies potato leaves into:
 
-The model classifies potato leaf images into three categories:
+- Healthy
+- Early Blight
+- Late Blight
 
-* Healthy
-* Early Blight
-* Late Blight
-
-The system enables farmers and agricultural professionals to quickly identify diseases from leaf images, allowing timely intervention and improved crop management.
+This project includes model training, REST API deployment, React frontend, TensorFlow Lite conversion, mobile application support, and Google Cloud deployment.
 
 ---
 
-## Problem Statement
+# Project Architecture
 
-Manual disease identification requires agricultural expertise and can be time-consuming. Misdiagnosis can lead to crop loss and reduced productivity.
-
-This project automates disease detection using Computer Vision and Deep Learning techniques to provide fast and accurate predictions from leaf images.
+Image → Deep Learning Model → Prediction → API → Frontend / Mobile App
 
 ---
 
-## Dataset
-
-The dataset consists of potato leaf images categorized into:
-
-1. Healthy
-2. Early Blight
-3. Late Blight
-
-Each image is preprocessed and resized before being used for model training.
-
----
-
-## Project Architecture
+# Project Structure
 
 ```text
-Potato Leaf Images
-        │
-        ▼
- Data Preprocessing
-        │
-        ▼
- Data Augmentation
-        │
-        ▼
- CNN Model Training
-        │
-        ▼
- Model Evaluation
-        │
-        ▼
- Saved TensorFlow Model
-        │
-        ▼
- TensorFlow Serving
-        │
-        ▼
- FastAPI Backend
-        │
-        ▼
- React Frontend
-        │
-        ▼
- Disease Prediction
-```
-
----
-
-## Features
-
-✅ Automatic potato disease detection
-
-✅ Deep Learning-based image classification
-
-✅ REST API for model inference
-
-✅ TensorFlow Serving deployment
-
-✅ React-based user interface
-
-✅ Real-time disease prediction
-
-✅ End-to-end production-ready architecture
-
----
-
-## Tech Stack
-
-### Machine Learning
-
-* Python
-* TensorFlow
-* Keras
-* NumPy
-* Matplotlib
-
-### Backend
-
-* FastAPI
-* TensorFlow Serving
-* Docker
-
-### Frontend
-
-* React.js
-
-### Deployment
-
-* Google Cloud Platform (GCP)
-* Docker Containers
-
----
-
-## Model Training Pipeline
-
-### 1. Data Collection
-
-Potato leaf images are collected and organized into disease categories.
-
-### 2. Data Preprocessing
-
-* Image resizing
-* Normalization
-* Dataset splitting
-* Label encoding
-
-### 3. Data Augmentation
-
-To improve model generalization:
-
-* Rotation
-* Horizontal flipping
-* Zooming
-* Translation
-
-### 4. CNN Model Training
-
-A Convolutional Neural Network is trained to learn disease-specific visual patterns from leaf images.
-
-### 5. Evaluation
-
-Model performance is evaluated using validation and test datasets.
-
-### 6. Deployment
-
-The trained model is exported and served using TensorFlow Serving and FastAPI APIs.
-
----
-
-## Folder Structure
-
-```text
-potato-disease-classification/
+Deep-Learning-Potato-Disease-Classification
 │
-├── backend/
-│   ├── main.py
-│   ├── requirements.txt
+├── Dataset/
+│   └── Potato leaf image dataset
+│
+├── api/
+│   └── FastAPI backend
 │
 ├── frontend/
-│   ├── src/
-│   ├── public/
+│   └── ReactJS web application
+│
+├── gcp/
+│   └── Google Cloud deployment scripts
+│
+├── mobile-app/
+│   └── React Native mobile application
 │
 ├── models/
-│   ├── saved_model/
+│   └── TensorFlow SavedModel
 │
-├── notebooks/
-│   ├── training.ipynb
+├── tf-lite-models/
+│   └── TensorFlow Lite models
 │
-├── screenshots/
+├── test_images_from_internet/
+│   └── Sample test images
 │
-├── README.md
+├── Training.ipynb
+│   └── Model training notebook
 │
-└── requirements.txt
+├── export_model.py
+│   └── SavedModel export script
+│
+├── model_potatoes.h5
+│   └── Trained CNN model
+│
+├── requirements.txt
+│
+└── README.md
 ```
 
 ---
 
-## Installation
+# Dataset
 
-### Clone Repository
+The model is trained on potato leaf images containing:
+
+- Healthy
+- Early Blight
+- Late Blight
+
+Dataset images are stored inside the `Dataset` folder.
+
+---
+
+# Technologies Used
+
+- Python
+- TensorFlow
+- Keras
+- FastAPI
+- ReactJS
+- React Native
+- Google Cloud Platform (GCP)
+- TensorFlow Lite
+- Docker
+
+---
+
+# Installation
+
+## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/potato-disease-classification.git
+git clone https://github.com/Desilva93/Deep-Learning-Potato-Disease-Classification.git
 
-cd potato-disease-classification
+cd Deep-Learning-Potato-Disease-Classification
 ```
 
-### Create Virtual Environment
+---
+
+## Create Virtual Environment
+
+### Mac/Linux
 
 ```bash
-python -m venv venv
-```
+python3 -m venv venv
 
-### Activate Environment
-
-Windows
-
-```bash
-venv\Scripts\activate
-```
-
-Linux / Mac
-
-```bash
 source venv/bin/activate
 ```
 
-### Install Dependencies
+### Windows
+
+```bash
+python -m venv venv
+
+venv\Scripts\activate
+```
+
+---
+
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -216,13 +129,57 @@ pip install -r requirements.txt
 
 ---
 
-## Run Backend
+# Model Training
+
+Open Jupyter Notebook:
+
+```bash
+jupyter notebook
+```
+
+Open:
+
+```text
+Training.ipynb
+```
+
+Run all notebook cells sequentially to:
+
+- Load Dataset
+- Preprocess Images
+- Train CNN Model
+- Evaluate Performance
+- Save Trained Model
+
+---
+
+# Export Model
+
+Run:
+
+```bash
+python export_model.py
+```
+
+This exports the trained model to the `models` folder.
+
+---
+
+# Run FastAPI Backend
+
+Navigate to API folder:
+
+```bash
+cd api
+```
+
+Start server:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Backend API will be available at:
+Backend will run at:
 
 ```text
 http://localhost:8000
@@ -230,17 +187,27 @@ http://localhost:8000
 
 ---
 
-## Run Frontend
+# Run Frontend
+
+Open new terminal:
 
 ```bash
 cd frontend
+```
 
+Install dependencies:
+
+```bash
 npm install
+```
 
+Run application:
+
+```bash
 npm start
 ```
 
-Frontend will be available at:
+Frontend will run at:
 
 ```text
 http://localhost:3000
@@ -248,79 +215,111 @@ http://localhost:3000
 
 ---
 
-## API Workflow
+# Run Mobile Application
 
-1. User uploads potato leaf image.
-2. Frontend sends image to FastAPI server.
-3. FastAPI forwards image to TensorFlow model.
-4. Model predicts disease category.
-5. Prediction is returned to frontend.
-6. Result is displayed to user.
+Navigate to:
 
----
+```bash
+cd mobile-app
+```
 
-## Results
+Install dependencies:
 
-The CNN model successfully classifies potato leaf diseases into:
+```bash
+yarn install
+```
 
-* Healthy
-* Early Blight
-* Late Blight
+For macOS:
 
-The trained model demonstrates strong performance and can be integrated into real-world agricultural monitoring systems.
+```bash
+cd ios
+pod install
+cd ..
+```
 
----
+Run application:
 
-## Screenshots
+```bash
+npm run ios
+```
 
-### Application Interface
+or
 
-Add screenshots here:
-
-```text
-screenshots/homepage.png
-screenshots/prediction.png
-screenshots/results.png
+```bash
+npm run android
 ```
 
 ---
 
-## Future Improvements
+# TensorFlow Lite Conversion
 
-* Mobile application deployment
-* Multi-crop disease detection
-* Explainable AI visualizations (Grad-CAM)
-* Cloud-based prediction service
-* Real-time field monitoring
+TensorFlow Lite models are stored inside:
 
----
+```text
+tf-lite-models/
+```
 
-## Skills Demonstrated
-
-* Deep Learning
-* Computer Vision
-* CNN Architecture Design
-* TensorFlow & Keras
-* FastAPI
-* REST API Development
-* TensorFlow Serving
-* React.js
-* Docker
-* Cloud Deployment
+These models can be used on mobile and edge devices.
 
 ---
 
-## Learning Outcomes
+# Testing
 
-Through this project, I gained hands-on experience in building an end-to-end Deep Learning application involving model training, API development, frontend integration, and deployment workflows.
+Sample images are available in:
+
+```text
+test_images_from_internet/
+```
+
+Use these images to test predictions.
 
 ---
 
-## Author
+# Google Cloud Deployment
 
-Desilva Roy
+Deployment related scripts are available in:
 
-M.Tech – Artificial Intelligence
+```text
+gcp/
+```
 
-Indian Institute of Science (IISc), Bangalore
+Steps:
 
+1. Create GCP Project
+2. Create Storage Bucket
+3. Upload Model
+4. Deploy Cloud Function
+5. Test API Endpoint
+
+---
+
+# Model Performance
+
+The CNN model achieves high accuracy on potato disease classification and successfully distinguishes:
+
+- Healthy Leaves
+- Early Blight
+- Late Blight
+
+---
+
+# Future Improvements
+
+- Improve model accuracy using transfer learning
+- Deploy on Kubernetes
+- Add disease treatment recommendations
+- Real-time camera prediction
+- Multi-crop disease detection
+
+---
+
+# Author
+
+**Desilva Roy**
+
+M.Tech, Indian Institute of Science (IISc)
+
+Deep Learning | NLP | Computer Vision | Generative AI
+
+GitHub:
+https://github.com/Desilva93
